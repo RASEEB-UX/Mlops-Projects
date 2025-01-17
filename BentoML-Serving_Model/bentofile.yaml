@@ -1,0 +1,13 @@
+service: "service:StockPredictionService"
+labels:
+  owner: DMC-Team
+  stage: trail
+include:
+  - "*.py"
+python:
+  packages:
+    - xgboost
+    - scikit-learn
+    - pandas
+    - numpy
+      
