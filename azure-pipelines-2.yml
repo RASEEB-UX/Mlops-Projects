@@ -19,9 +19,4 @@ steps:
     pytest
   displayName: 'Set up venv, install dependencies, run tests'
 
-# Optional: Deploy to Azure App Service (non-Docker)
-- task: AzureWebApp@1
-  inputs:
-    azureSubscription: '<your-azure-service-connection>'
-    appName: '<your-app-service-name>'
-    package: '.'
+
