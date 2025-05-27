@@ -4,19 +4,18 @@ trigger:
       - main
 
 pool:
-  name: ec2-user
+  name: ec2-user # Make sure this matches the name of your registered agent pool
 
 steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '3.11'
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y python3.11 python3.11-venv python3.11-dev
+  displayName: 'Install Python 3.11'
 
 - script: |
-    python -m venv venv
+    python3.11 -m venv venv
     source venv/bin/activate
     python -m pip install --upgrade pip
     pip install -r requirements.txt
     pytest
   displayName: 'Set up venv, install dependencies, run tests'
-
-
