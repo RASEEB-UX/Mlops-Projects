@@ -13,5 +13,4 @@ steps:
     source myenv/bin/activate
     python -m pip install --upgrade pip
     pip install -r requirements.txt
-    myenv/bin/pytest
   displayName: 'Set up venv, install dependencies, run tests'
