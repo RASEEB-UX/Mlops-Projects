@@ -1,0 +1,27 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  name: ec2-user
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.11'
+
+- script: |
+    python -m venv venv
+    source venv/bin/activate
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+    pytest
+  displayName: 'Set up venv, install dependencies, run tests'
+
+# Optional: Deploy to Azure App Service (non-Docker)
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: '<your-azure-service-connection>'
+    appName: '<your-app-service-name>'
+    package: '.'
